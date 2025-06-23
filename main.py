@@ -7,6 +7,10 @@ def main():
         exit(1)
     else:
         address = argv[1]
+
+    if len(address) != 39:
+        print("Invalid address input!")
+    else:
         compress_ipv6(address)
 if __name__ == "__main__":
     main()
