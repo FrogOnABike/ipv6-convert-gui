@@ -11,7 +11,7 @@ def main():
     if len(address) != 39:
         print("Invalid address input!")
     else:
-        compress_ipv6(address)
+        print(compress_ipv6(address))
 if __name__ == "__main__":
     main()
     

@@ -1,7 +1,9 @@
+import re
+
 def compress_ipv6(ipv6_address):
     max = 0
-    current = 0
-    end_index = 0
+    count = 0
+    end_index = float("-inf")
     section_list = ipv6_address.split(":")
     
     # Initial pass to replace all groups of "0000" with "0" and remove leading 0's in others
@@ -22,22 +24,24 @@ def compress_ipv6(ipv6_address):
         else:
             count = 0
     
-    # Convert the end_index 0 to an r, to allow for a small hack later....
-    section_list[end_index] = "r"
-    print(f"Output 1: {section_list}")
+    # Convert the end_index to an r, to allow for a small hack later....
+    if end_index > float("-inf"):
+        section_list[end_index] = "r"
     
     # Remove list elements so can format output correctly with :: substituting!
     
     if max >=2:
         del section_list[(end_index-(max-1)):(end_index)]
-        # for r in range(end_index-(max-1),(end_index)):
-        #     section_list.pop(r)
                     
-    # Convert result to lowercase to improve readability
+    # Convert result to lowercase to improve readability, the "r" acts a placeholder for where the :: need to be.
+    # Using regex for replacement as allows for instances where the "r" placeholder appears in first position to no ":" before.
     result = ":".join(section_list).lower()
+    result = re.sub(r"(\:*r)",":",result)
+   
+    # Some test print statements, used whilst debugging
     print(f"Output: {section_list}")
-    # Now we have the output string, the r acts a placeholder for where the :: need to be :)
-    print(f"Result: {result.replace(":r:","::")}")
+    print(f"Result: {result}")
     print(f"0's Count:{max}")
     print(f"Range:{end_index-(max-1)}-{end_index}")
     
+    return result
