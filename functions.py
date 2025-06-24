@@ -1,6 +1,9 @@
 import re
 
-def compress_ipv6(ipv6_address):
+def compress_ipv6(ipv6_address,debug=False):
+    if len(ipv6_address) != 39:
+        raise Exception("Please input a valid IPv6 address")
+    
     max = 0
     count = 0
     end_index = float("-inf")
@@ -36,12 +39,13 @@ def compress_ipv6(ipv6_address):
     # Convert result to lowercase to improve readability, the "r" acts a placeholder for where the :: need to be.
     # Using regex for replacement as allows for instances where the "r" placeholder appears in first position to no ":" before.
     result = ":".join(section_list).lower()
-    result = re.sub(r"(\:*r)",":",result)
+    result = re.sub(r"(\:*r\:*)","::",result)
    
-    # Some test print statements, used whilst debugging
-    print(f"Output: {section_list}")
-    print(f"Result: {result}")
-    print(f"0's Count:{max}")
-    print(f"Range:{end_index-(max-1)}-{end_index}")
+    # Debugging prints below, to help troubleshoot variables
+    if debug:
+        print(f"section_list Output: {section_list}")
+        print(f"Result: {result}")
+        print(f"0's Count:{max}")
+        print(f"Range:{end_index-(max-1)}-{end_index}")
     
     return result
