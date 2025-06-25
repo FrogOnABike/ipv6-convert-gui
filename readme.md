@@ -41,7 +41,7 @@ With this option you can also add “--debug” at the end to see some extra out
 Alternatively, you can launch the GUI version using:  
 
 ```
-Python3 main.py \--gui
+Python3 main.py --gui
 ```
 
 When that launches you can simply input the IP address in the box and either press “Enter” or click the “Process” button to get the result below.
