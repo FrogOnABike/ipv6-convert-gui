@@ -10,9 +10,9 @@ Thankfully, I’d got a quick copy-paste of the problem definition and code I’
 
 To test this out yourself, simply clone the repo to your local machine:
 
-'''
+```
 git clone https://github.com/FrogOnABike/ipv6-convert-gui.git
-'''
+```
 
 The GUI part is built using TKinter, which should ship as standard as part of Python \- however if you encounter issues you can follow their installation guide [here](https://tkdocs.com/tutorial/install.html)
 
@@ -24,9 +24,9 @@ Once you have the repo cloned there are a couple of ways to use it:
 
 ### Command Line
 
-'''
+```
 python3 main.py <address>
-'''
+```
 
 This will execute and output the shortened version direct to console.
 
@@ -35,9 +35,9 @@ With this option you can also add “--debug” at the end to see some extra out
 ### GUI
 
 Alternatively you can launch the GUI version using:  
-'''
+```
 Python3 main.py \--gui
-'''
+```
 
 When that launches you can simply input the full IP address in the box and either press “Enter” or click the “Compress” button to get the shortened version below.  
 ![][image1]![][image2]
