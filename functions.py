@@ -49,3 +49,31 @@ def compress_ipv6(ipv6_address,debug=False):
         print(f"Range:{end_index-(max-1)}-{end_index}")
     
     return result
+
+def expand_ipv6(ipv6_address,debug=False):
+    section_list = ipv6_address.split(":")
+    if "" in section_list:
+        i_p = section_list.index("")
+        
+    for i in range(0,(len(section_list))):
+        # if section_list[i] == "":
+        #     section_list.insert(i,"0000")
+        if len(section_list[i]) != 4:
+            miss_char = 4 - len(section_list[i])
+            section_list[i] = (miss_char*"0")+section_list[i]
+    
+    if len(section_list) !=8:
+        to_insert = 8 - len(section_list)
+        while to_insert !=0:
+            section_list.insert(i_p,"0000")
+            to_insert -=1
+    result = ":".join(section_list).lower()
+
+    # Debugging prints below, to help troubleshoot variables
+    if debug:
+        print(f"section_list Output: {section_list}")
+        print(f"Result: {result}")
+        # print(f"0's Count:{max}")
+        # print(f"Range:{end_index-(max-1)}-{end_index}")
+    
+    return result

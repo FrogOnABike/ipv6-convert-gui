@@ -1,5 +1,5 @@
 from sys import argv
-from functions import compress_ipv6
+from functions import compress_ipv6, expand_ipv6
 from classes import *
 
 def main():
@@ -12,12 +12,15 @@ def main():
     
     if "--debug" in argv:
         debug = True
+        
+    # if "--expand" in argv:
+    #     expand_ipv6(address)
     
     if "--gui" in argv:
         Window(200,100)
         
     if len(address) != 39:
-        print("Invalid address input!")
+        print(expand_ipv6(address,debug))
     else:
         print(compress_ipv6(address,debug))
     
